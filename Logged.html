@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width = device-width, initial-scale = 1">
+        <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" media="screen"
+                href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css" />
+        <link rel="stylesheet" type="text/css"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+        <!-- NAVIGATION BAR ----------------------------------------------------------------------------------->
+        <nav class="navbar navbar-default ">
+                <div class="container">
+                        <div class="row">
+                                <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                                data-target="#myNavbar">
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand " href="#">
+                                                <H2>Φοιτ. Εστία Πανεπιστημίου Πατρών</H2>
+                                        </a>
+                                </div>
+                        </div>
+                        <div class="flex-container">
+                                <div class="collapse navbar-collapse" id="myNavbar">
+                                        <ul class="nav navbar-nav navbar-center">
+                                                <li class="active "><a href="#" class="spc" id="showhome">Αρχική ⟰</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-toggle spc" onclick="tick()"
+                                                                id="showproducts">Εισιτήρια </a></li>
+                                                <li><a href="#" class="spc" id="showabout">Ιστορικό</a></li>
+                                                <!--onclick="history()"-->
+                                                <li><a href="#" class="spc" id="showcontact">Επικοινωνία</a></li>
+                                                <li><a href="#" class="dropdown-toggle spc"
+                                                                data-toggle="dropdown">Λογαριασμός <span
+                                                                        class="caret" /></a>
+                                                        <ul class="dropdown-menu">
+                                                                <li><a href="#" id="showprofile">Προβολή</a></li>
+                                                                <li><a href="logout.php">Αποσύνδεση</a></li>
+                                                        </ul>
+                                                </li>
+                                        </ul>
+                                </div>
+                        </div>
+
+                </div>
+        </nav>
+        <!-------- /NAVIGATION BAR------------------------------------------------------------------------------------------------>
+
+        <img id="op" class="hidden-sm hidden-xs" src="upatras.png" />
+
+        <!--------- HOME ---------------------------------------------------------------------------------------------------------->
+        <div class="container-fluid" id="home">
+
+                <div class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-10 col-xs-12 ">
+                        <p id="dailyProg"></p>
+                </div>
+
+        </div>
+        <!--------- /HOME --------------------------------------------------------------------------------------------------------->
+
+
+
+        <!--------- PRODUCTS -------------------------------------------------------------------------------------------------------->
+        <div id="products">
+
+
+                <div class="container">
+                        <div class="row">
+
+
+                                <div class="well col-lg-offset-0 col-lg-4 ">
+                                        <p id="tickets"></p>
+                                </div>
+
+                                <div class="well col-lg-offset-1 col-lg-7 ">
+                                        <h4>ΑΠΟΣΤΟΛΗ ΕΙΣΙΤΗΡΙΟΥ</h4><br>
+                                        <input type="text" name="am" id="targetAM" placeholder="ΑΜ Παραλήπτη" required
+                                                onkeyup="this.value=this.value.replace(/[^\d]+/,''), fetchUSR()">
+                                        <select name="dep" id="sel">
+                                                <option value="b">Πρωϊνό</option>
+                                                <option value="l">Μεσημεριανό</option>
+                                                <option value="d">Βραδυνό</option>
+                                        </select>
+                                        <br><br>
+                                        <p id="fechedUSR"></p>
+                                        <input type="checkbox" onclick="check_box()" id="chkbx" name="sure"
+                                                value="yes">Είμαι σίγουρος/η &nbsp
+                                        <input type="submit" value="Αποστολή" id="submit" onclick="sendTick()"
+                                                disabled><br>
+                                </div>
+
+
+                        </div>
+                </div>
+
+
+        </div>
+        <!---------- /PRODUCTS ------------------------------------------------------------------------------------------------------>
+
+
+
+        <!----------- ABOUT ---------------------------------------------------------------------------------------------------------->
+        <div id="about">
+
+                <div
+                        class="container-fluid well col-lg-push-0 col-lg-12 col-md-push-0 col-md-12 col-sm-push-0 col-sm-12 col-xs-12">
+                        <template id="bought">
+                                <div class="container-fluid col-lg-3 col-sm-6 col-xs-12">
+                                        <h2></h2>
+                                        <p></p>
+                                        <hr>
+                                </div>
+                        </template>
+                        <template id="sent">
+                                <div class="container-fluid col-lg-3 col-sm-6 col-xs-12">
+                                        <h2></h2>
+                                        <p></p>
+                                        <hr>
+                                </div>
+                        </template>
+                        <template id="used">
+                                <div class="container-fluid col-lg-3 col-sm-6 col-xs-12">
+                                        <h2></h2>
+                                        <p></p>
+                                        <hr>
+                                </div>
+                        </template>
+                        <template id="received">
+                                <div class="container-fluid col-lg-3 col-sm-6 col-xs-12">
+                                        <h2></h2>
+                                        <p></p>
+                                        <hr>
+                                </div>
+                        </template>
+                </div>
+
+        </div>
+        <!---------- /ABOUT ---------------------------------------------------------------------------------------------------------->
+
+
+
+        <!------------- CONTACT ------------------------------------------------------------------------------------------------------->
+        <div class="container-fluid" id="contact">
+                <div class="row">
+                        <div class="col-sm-5 col-xs-12">
+                                <div class="well ">
+                                        <h4>Στοιχεία επικοινωνίας</h4><br>
+                                        <b>Διεύθυνση: </b> x <br>
+                                        <b>TK:</b> x <br>
+                                        <b> ΤΗΛ/ FAX:</b> x <br>
+                                        <b>E-mail:</b> x <br><br>
+                                        <b><a href="about:blank" target="_blank"
+                                                        class="btn btn-social-icon btn-facebook"><span
+                                                                class="fa fa-facebook"></span></a></b>
+                                </div>
+                                <br>
+                                <div class="well">
+                                        <h4>Ωράριο λειτουργείας</h4>
+                                        Πρωϊνό: &nbsp <b>8:00-9:00</b><br>
+                                        Μεσημεριανό: &nbsp <b>12:00-15:00</b><br>
+                                        Βραδυνό: &nbsp <b>18:00-21:00</b>
+                                </div>
+
+                        </div>
+                        <div class=" col-xs-12 col-sm-7 ">
+                                <div class="jumbotron col-sm-offset-1 col-sm-10 col-xs-12" id="map"></div>
+                        </div>
+                </div>
+        </div>
+
+        <!--------------- /CONTACT ---------------------------------------------------------------------------------------------------->
+
+
+
+        <!------------- PROFILE ------------------------------------------------------------------------------------------------------->
+        <div id="profile">
+                <div
+                        class="well col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-1 col-md-10 col-xs-12 ">
+                        <div>
+                                <h3>Προσωπικά στοιχεία</h3>
+                                <div class="row">
+                                        <div class="col-xs-4 ">
+                                                Όνομα: <br>Επώνυμο: <br>Πατρώνυμο:
+                                        </div>
+                                        <div class=" col-xs-8 ">
+                                                <template id="uname">
+                                                        <p></p>
+                                                        <hr>
+                                                </template>
+                                        </div>
+                                </div>
+                        </div>
+                        <div>
+                                <h3>Σπουδές</h3>
+                                <div class="row">
+                                        <div class="col-xs-4 ">
+                                                Κύκλος Σπουδών: <br>Τμήμα: <br>Αριθμός Μητρώου: <br>Αρ. Ακαδημαϊκής
+                                                Ταυτότητας:
+                                        </div>
+                                        <div class=" col-xs-8 ">
+                                                <template id="std">
+                                                        <p></p>
+                                                        <hr>
+                                                </template>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+
+
+
+
+
+
+        <!--------------- /PROFILE ---------------------------------------------------------------------------------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7W7sF6dEZPi1B92By9nZ15EJ2aeFu8zc&callback=initMap"
+                async defer></script>
+        <script type="text/javascript" src="js/gMapsMarker.js"></script>
+        <script type="text/javascript" src="js/requests.js"></script>
+        <script type="text/javascript" src="js/cookie.js"></script>
+        <script type="text/javascript" src="js/hide.js"></script>
+        <script type="text/javascript" src="js/fetchMenu.js"></script>
+
+</body>
+
+</html>

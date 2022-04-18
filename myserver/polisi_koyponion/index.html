@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="utf-8"/>
+  <title>Πώληση κουπονιών</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="../script/sell_coupons.js"></script>
+  <script src= "../script/statistic.js"></script>
+  
+		
+  <link rel="stylesheet" type="text/css" href="../stylecss/my_full_screen_page.css"/>
+  <link rel="stylesheet" type="text/css" href="../stylecss/style1.css"/>
+  
+
+</head>
+</head>
+<body >
+  <div class="my_full_screen">
+    <nav class="navbar navbar-light navbar-expand" >
+      <a class="navbar-brand" href="#">Αρχική</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto" >
+          <li class="nav-item dropdown "  >
+            <button class="btn dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Χρήστης
+            </button>              
+            <div class="dropdown-menu dropdown-menu-right">                
+              <a class="dropdown-item nav-item" href="#">Τα στοιχεία μου</a>
+              <a class="dropdown-item" href="../logout.php">Αποσύνδεση</a>
+            </div>
+          </li>              
+        </ul>
+      </div>
+    </nav>
+    <!-- <nav aria-label="breadcrumb" >
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Πώληση κουπονιών</li>
+      </ol>
+    </nav>  --> 
+    <div class="container-fluid my_flex_height"  >
+				<div class="row my_flex_height"  >
+					<div class="col-xm-12 col-sm-6 col-md-7 col-lg-8"> 
+						<header>
+							<br/>
+              <h4 class="text-left">Πώληση κουπονιών</h4>
+            </header>
+            <form action="" onsubmit="javascript:sell_coupons()">
+                <div class="form-group mx-auto " style="max-width:20em">
+                    <label for="student_id"  > Αριθμός κάρτας</label>
+                    <input type="number" class="form-control" id="student_id" placeholder="Καταχωρίστε τον αριθμό της κάρτας" name="student_id"  min="0" autofocus required/>
+                  </div>
+              <div class="form-group form-row mx-auto  " style="max-width:30em">
+                  <div class="col-sm md-form">
+                      <label for="ex1">Πρωινό</label>
+                      <input class="form-control" id="sell_breakfast" type="number"  name="sell_breakfast" value="0" min="0"/>
+                  </div>
+                  <div class="col-sm" >
+                      <label for="ex2">Μεσημεριανό</label>
+                      <input class="form-control" id="sell_lunch" type="number" name="sell_lunch" value="0" min="0"/>
+                  </div>
+                  <div class="col-sm">
+                      <label for="ex3">Βραδινό</label>
+                      <input class="form-control" id="sell_dinner" type="number" name="sell_dinner" value="0" min="0"/>
+                  </div>
+              </div>
+              <label id="result" > </label>
+              <div class="mx-auto" style="max-width:5em">
+                  <button type="submit" class="btn btn-default" >Επόμενο</button>
+              </div>
+
+                
+            </form>
+        </div>
+        <div id=statistics class="col-xm-12 col-sm-6 col-md-5 col-lg-4  ">
+          <div id="statistic_food " class=" col-12 " >
+            <header>
+              <br/>
+              <h4>Στατιστικά γεύματος</h4>
+            </header>
+            <br/>
+            <br/>
+            <div class="row">
+              <label for="stoudents_koupons_numbers" class="col-9 col-lg-7">Κουπόνια Φοιτητών</label>
+              <label id="stoudents_koupons_numbers" name="stoudents_koupons_numbers"  class="col" ></label>
+            </div>
+          </div>
+          <div id="print_statistic_food " class=" col-12 ">
+            <header>
+              <br/>
+              <h4>Εξαγωγή στατιστικών</h4>
+            </header>
+            <br/>
+            <form action="../php/statistic_export.php" target="_blank" method= "GET">
+              <div class="mx-auto"style=" min-width: 70%; max-width:80%;">
+                <select  onchange="adaptedCheck(this);" name="eidos_geymatos" id="eidos_geymatos" style="width: 100%;"  >
+                  <option value="meal">Γεύμα</option>
+                  <option value="today" >Σήμερα</option>
+                  <option value="adapted" >Προσαρμοσμένο</option>
+                </select>
+                <div name="choose_meals" id="choose_meals" class="invisible">
+                  <label class="checkbox-inline "><input type="checkbox" name="breakfast" value="breakfast" checked>Πρωινό</label>
+                  <label class="checkbox-inline "><input type="checkbox" name="lunch" value="lunch" checked>Μεσημεριανό</label>
+                  <label class="checkbox-inline "><input type="checkbox" name="dinner" value="dinner" checked>Βραδινό</label>
+                </div>
+              </div>
+                <div name="choose_days_period" id="choose_days_period" >
+                    <label class=" ">Από:<input type="date" name="from_day" id="from_day" value=""></label>
+                    <label class=" ">Μέχρι:<input type="date" name="to_day" id="to_day" value=""></label>
+                </div>
+                <input id="katigoria_xristi" name="katigoria_xristi" type="hidden" value="buy"/>
+                <button type="submit" class="  btn-primary" style="width: 100%" >Υποβολή</button>
+            </form>
+          </div>
+        </div>				
+      </div>
+    </div>
+    <footer>
+        <p class="text-center">Posted by: Μουρατίδης Νικόλαος</p>
+        <p class="text-center">Contact information: <a href="mailto:someone@example.com">
+        someone@example.com</a></p>
+    </footer>
+  </div>
+</body>
+</html>

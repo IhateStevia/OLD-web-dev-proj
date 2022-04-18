@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" >
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/registerStyles.css">
+</head>
+<body>
+<form action="register.php" method="post" >
+        <br><br>
+        <div class="container-fluid col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10" id="home" >
+        <a href="/Index.php"><H2>Φοιτ. Εστία Πανεπιστημίου Πατρών</H2></a>
+        <div class="flex-container">
+                <div class="col-lg-offset-5 col-lg-8 col-xs-offset-4 col-xs-8 ">
+                    <H4>Στοιχεία Εγγραφής</H4>
+                    <br>
+                    <input type="text" name="name" placeholder="Όνομα" required><br>
+                    <input type="text" name="lname" placeholder="Επώνυμο" required><br>
+                    <input type="text" name="fname" placeholder="Πατρώνυμο" required><br>
+                    <input type="text" name="am" placeholder="Αρ. μητρώου" required onkeyup="this.value=this.value.replace(/[^\d]+/,'')"><br>
+                    <input type="text" name="cn" placeholder="Αρ. Ακαδ. Ταυτότητας" required onkeyup="this.value=this.value.replace(/[^\d]+/,'')"><br>
+                    <select name="dep" id="sel">
+                            <option value="ΗΜΤΥ" >ΗΜΤΥ</option>
+                            <option value="άλλο">άλλο</option>
+                    </select><br>
+                    <select name="stdC" id="sel">
+                            <option value="Προτυχιακό" >Προτυχιακό</option>
+                            <option value="Μεταπτυχιακό">Μεταπτυχιακό</option>
+                    </select><br>
+                    <input type="text" name="username" placeholder="Όνομα χρήστη" required><br>
+                    <input type="password" id="password" name="password" placeholder="Κωδικός" onchange='check_pass();' required><br>
+                    <input type="password" id="psw-repeat" name="psw-repeat" placeholder="Έπαν. Κωδικού" onchange='check_pass();' required><br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="Υποβολή" id="submit" disabled>
+                    <br><br>
+                </div>
+        </div>        
+        </div>
+</form>
+<footer>
+  <a href="./loginForm.html"><H4 class="ftr" >Κάντε click εδώ για σύνδεση&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</H4></a>
+</footer>
+
+	<script type="text/javascript" src="js/passMatch.js"></script>
+</body>
+</html>

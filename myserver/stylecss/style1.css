@@ -1,0 +1,19 @@
+/*COLOR rgba(243, 212, 0, 0.42)
+
+*/
+nav,.breadcrumb,body footer{
+    background-color:#F6F27A;
+
+}
+body{
+    background-color:#F6F2DA;
+}
+
+#statistic_food{
+    background-color:white;     
+    flex-direction: column;
+}
+#statistics,#print_statistic_food{
+    background-color:aliceblue;     
+    flex-direction: column;
+}
